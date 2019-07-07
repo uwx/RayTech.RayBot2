@@ -95,6 +95,17 @@ textarea#setter {
   line-height: 0;*/
 }
 
+@-webkit-keyframes "blink" {
+  from,
+  to {
+    background-color: rgba(0, 0, 0, .0);
+    background-color: transparent;
+  }
+  50% {
+    background-color: #A0A0FF;
+  }
+}
+
 @keyframes "blink" {
   from,
   to {
@@ -106,7 +117,7 @@ textarea#setter {
   }
 }
 
-::selection {
+::-moz-selection, ::selection {
   background: #A0A0FF;
 }
 
