@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>RAYBOT2 - LANDING</title>
+<style>
+@font-face {
+  font-family: 'c64_userregular';
+  src: url('https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/bf2cd1a6fee217f8ef921a42c13d4f901fdd1a81/c64-webfont.eot');
+  src: url('https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/bf2cd1a6fee217f8ef921a42c13d4f901fdd1a81/c64-webfont.eot?#iefix') format('embedded-opentype'),
+       url('https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/bf2cd1a6fee217f8ef921a42c13d4f901fdd1a81/c64-webfont.woff') format('woff'),
+       url('https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/bf2cd1a6fee217f8ef921a42c13d4f901fdd1a81/c64-webfont.ttf') format('truetype'),
+       url('https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/bf2cd1a6fee217f8ef921a42c13d4f901fdd1a81/c64-webfont.svg#c64_userregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'C64 Pro Mono';
+  src: url('https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/bf2cd1a6fee217f8ef921a42c13d4f901fdd1a81/C64_Pro_Mono-STYLE.eot'); /* IE9 Compat Modes */
+  src: url('https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/bf2cd1a6fee217f8ef921a42c13d4f901fdd1a81/C64_Pro_Mono-STYLE.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/bf2cd1a6fee217f8ef921a42c13d4f901fdd1a81/C64_Pro_Mono-STYLE.woff') format('woff'), /* Modern Browsers */
+       url('https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/bf2cd1a6fee217f8ef921a42c13d4f901fdd1a81/C64_Pro_Mono-STYLE.woff2') format('woff2'), /* Modern Browsers */
+       url('https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/bf2cd1a6fee217f8ef921a42c13d4f901fdd1a81/C64_Pro_Mono-STYLE.ttf')  format('truetype');
+}
+
+html,
+body {
+  height: 100%;
+  font-size: calc(0.75em + 1vmin);/*calc(60vmin * (25 / 384));*/
+  overflow: hidden;
+}
+
+body {
+  background-color: #A0A0FF;
+  font-family: 'C64 Pro Mono', 'c64_userregular', 'Lucida Console', 'Courier New', Monaco, Courier, monospace;
+  /*letter-spacing: .2vw;*/
+  
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+body * { /* stop h1 etc default font sizes */
+  font-size: inherit;
+}
+
+.frame {
+  background-color: #4040E0;
+  height: 95%;
+  padding: 0.5vw 0.4vw;
+  /*line-height: 1.5;*/
+  color: #A0A0FF;
+  
+  /* padding: calc(100vh/5) 0; */
+  flex-grow: 1;
+  box-sizing: border-box;
+  margin: calc(100vmin * (64 / 384))/* calc(100vh * (72 / 272))*/;
+  text-transform: uppercase;
+}
+
+.frame, .frame * {
+  white-space: pre;
+}
+
+.frame .center {
+  text-align: center;
+  margin: 0;
+}
+
+textarea#setter {
+  left: -1000px;
+  position: absolute;
+}
+
+#cursor {
+  background-color: #A0A0FF;
+  color: transparent;
+  /*position: relative;*/
+  animation: 1s blink step-end infinite;
+  /*position: relative;
+  left: -10px;*/
+  
+/*   display: block;
+  margin: 0.2vw 0;
+  width: 1.8vw;
+  height: 1.8vw;
+  background-color: #A0A0FF;
+  animation: 1s blink step-end infinite; */
+  
+  
+  /*top: 0px;
+  margin-bottom: -50px;
+  font-size: 120%;
+  line-height: 0;*/
+}
+
+@keyframes "blink" {
+  from,
+  to {
+    background-color: rgba(0, 0, 0, .0);
+    background-color: transparent;
+  }
+  50% {
+    background-color: #A0A0FF;
+  }
+}
+
+::selection {
+  background: #A0A0FF;
+}
+
+/* these ensure even font sizes, unfortunately there is no less disgusting way of doing this in CSS */
+
+@media (min-height: 100px) { html, body { font-size: calc(0.75em + (100px / 100)); } }
+@media (min-height: 200px) { html, body { font-size: calc(0.75em + (200px / 100)); } }
+@media (min-height: 300px) { html, body { font-size: calc(0.75em + (300px / 100)); } }
+@media (min-height: 400px) { html, body { font-size: calc(0.75em + (400px / 100)); } }
+@media (min-height: 500px) { html, body { font-size: calc(0.75em + (500px / 100)); } }
+@media (min-height: 600px) { html, body { font-size: calc(0.75em + (600px / 100)); } }
+@media (min-height: 700px) { html, body { font-size: calc(0.75em + (700px / 100)); } }
+@media (min-height: 800px) { html, body { font-size: calc(0.75em + (800px / 100)); } }
+@media (min-height: 900px) { html, body { font-size: calc(0.75em + (900px / 100)); } }
+@media (min-height: 1000px) { html, body { font-size: calc(0.75em + (1000px / 100)); } }
+@media (min-height: 1100px) { html, body { font-size: calc(0.75em + (1100px / 100)); } }
+@media (min-height: 1200px) { html, body { font-size: calc(0.75em + (1200px / 100)); } }
+@media (min-height: 1300px) { html, body { font-size: calc(0.75em + (1300px / 100)); } }
+@media (min-height: 1400px) { html, body { font-size: calc(0.75em + (1400px / 100)); } }
+@media (min-height: 1500px) { html, body { font-size: calc(0.75em + (1500px / 100)); } }
+@media (min-height: 1600px) { html, body { font-size: calc(0.75em + (1600px / 100)); } }
+@media (min-height: 1700px) { html, body { font-size: calc(0.75em + (1700px / 100)); } }
+@media (min-height: 1800px) { html, body { font-size: calc(0.75em + (1800px / 100)); } }
+@media (min-height: 1900px) { html, body { font-size: calc(0.75em + (1900px / 100)); } }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="center">**** RayBot 64 BASIC V2 ****</div>
+
+  <div class="center">64K ram system &emsp;&emsp; 38911 basic bytes free</div>
+
+  COMING ... EVENTUALLY ... ❤
+  <b id="cursor">0</b><br>
+</div>
+</body>
+</html>
