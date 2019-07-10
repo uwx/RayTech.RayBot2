@@ -321,7 +321,7 @@ body:not(.fase-ray) > .ray-frame-outer { display: none !important; }
     background: transparent;
     color: white;
     border: none;
-    padding-top: 6px; /* a cheap way to offset the vertical-align */
+    padding-top: 6px; /* a cheap way to offset the vertical-align */ /* TODO this is no longer correct and is not responsive */
 }
 
 .ray-frame button:before {
@@ -472,13 +472,13 @@ const fases = {
                                     if (!this.timeout) {
                                         this.timeout = setTimeout(() => transitionFase('crunch'), 2000);
                                     }
+                                    this.destroy(); // quickly! stop the user from sending more commands!
                                     break;
                                 default:
                                     this.printResponse('Syntax error. Sorry, this isn\'t actually a BASIC interpreter. Try typing "RayBot".');
                                     break;
                             }
                             this.commandTextNode.nodeValue = '';
-                            this.destroy(); // quickly! stop the user from sending more commands!
                         }
                     } else if (key == 'Backspace') {
                         if (this.commandTextNode && this.commandTextNode.nodeValue.length > 0) {
