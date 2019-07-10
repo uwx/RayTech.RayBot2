@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="fase-basic">
 <head>
 <title>RAYBOT2 - LANDING</title>
 <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
@@ -19,6 +19,9 @@
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/5e3107ffdf732d2e70d083fa150f6541b7a8439f/simplebar@4.1.0.css">
+<!-- load before to avoid flickering -->
+<script src="https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/5e3107ffdf732d2e70d083fa150f6541b7a8439f/simplebar@4.1.0.js"></script>
 <style>
 @font-face {
   font-family: 'c64_userregular';
@@ -40,16 +43,19 @@
        url('https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/bf2cd1a6fee217f8ef921a42c13d4f901fdd1a81/C64_Pro_Mono-STYLE.ttf')  format('truetype');
 }
 
-html,
-body {
+html.fase-basic,
+body.fase-basic {
   height: 100%;
   font-size: calc(0.75em + 1vmin);/*calc(60vmin * (25 / 384));*/
   overflow: hidden;
 }
 
 body {
-  background-color: #A0A0FF;
   font-family: 'C64 Pro Mono', 'c64_userregular', 'Lucida Console', 'Courier New', Monaco, Courier, monospace;
+}
+
+body.fase-basic {
+  background-color: #A0A0FF;
   /*letter-spacing: .2vw;*/
   
   padding: 0;
@@ -58,11 +64,13 @@ body {
   margin: 0;
 }
 
-body * { /* stop h1 etc default font sizes */
+body.fase-basic * { /* stop h1 etc default font sizes */
   font-size: inherit;
 }
 
-.frame {
+body:not(.fase-basic) > .basic-frame { display: none; }
+
+.basic-frame {
   background-color: #4040E0;
   height: 95%;
   padding: 0.5vw 0.4vw;
@@ -76,24 +84,14 @@ body * { /* stop h1 etc default font sizes */
   text-transform: uppercase;
 }
 
-.frame, .frame * {
-  /*white-space: pre;*/
-}
-
-.frame .spacer:empty:after
-{
+.basic-frame .spacer:empty:after {
     content: '\200b';
     visibility: hidden;
 }
 
-.frame .center {
+.basic-frame .center {
   text-align: center;
   margin: 0;
-}
-
-textarea#setter {
-  left: -1000px;
-  position: absolute;
 }
 
 #cursor {
@@ -145,35 +143,413 @@ textarea#setter {
 
 /* these ensure even font sizes, unfortunately there is no less disgusting way of doing this in CSS */
 
-@media (min-height: 000px ) and (min-width: 100px ) { html, body { font-size: calc(0.75em + (100px  / 150)); } }
-@media (min-height: 000px ) and (min-width: 200px ) { html, body { font-size: calc(0.75em + (200px  / 150)); } }
-@media (min-height: 000px ) and (min-width: 300px ) { html, body { font-size: calc(0.75em + (300px  / 150)); } }
-@media (min-height: 000px ) and (min-width: 400px ) { html, body { font-size: calc(0.75em + (400px  / 150)); } }
-@media (min-height: 000px ) and (min-width: 500px ) { html, body { font-size: calc(0.75em + (500px  / 150)); } }
-@media (min-height: 100px ) and (min-width: 600px ) { html, body { font-size: calc(0.75em + (600px  / 150)); } }
-@media (min-height: 200px ) and (min-width: 700px ) { html, body { font-size: calc(0.75em + (700px  / 150)); } }
-@media (min-height: 300px ) and (min-width: 800px ) { html, body { font-size: calc(0.75em + (800px  / 150)); } }
-@media (min-height: 400px ) and (min-width: 900px ) { html, body { font-size: calc(0.75em + (900px  / 150)); } }
-@media (min-height: 500px ) and (min-width: 1000px) { html, body { font-size: calc(0.75em + (1000px / 150)); } }
-@media (min-height: 600px ) and (min-width: 1100px) { html, body { font-size: calc(0.75em + (1100px / 150)); } }
-@media (min-height: 700px ) and (min-width: 1200px) { html, body { font-size: calc(0.75em + (1200px / 150)); } }
-@media (min-height: 800px ) and (min-width: 1300px) { html, body { font-size: calc(0.75em + (1300px / 150)); } }
-@media (min-height: 900px ) and (min-width: 1400px) { html, body { font-size: calc(0.75em + (1400px / 100)); } }
-@media (min-height: 1000px) and (min-width: 1500px) { html, body { font-size: calc(0.75em + (1500px / 100)); } }
-@media (min-height: 1100px) and (min-width: 1600px) { html, body { font-size: calc(0.75em + (1600px / 100)); } }
-@media (min-height: 1200px) and (min-width: 1700px) { html, body { font-size: calc(0.75em + (1700px / 100)); } }
-@media (min-height: 1300px) and (min-width: 1800px) { html, body { font-size: calc(0.75em + (1800px / 100)); } }
-@media (min-height: 1400px) and (min-width: 1900px) { html, body { font-size: calc(0.75em + (1900px / 100)); } }
+@media (min-height: 000px ) and (min-width: 100px ) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (100px  / 150)); } }
+@media (min-height: 000px ) and (min-width: 200px ) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (200px  / 150)); } }
+@media (min-height: 000px ) and (min-width: 300px ) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (300px  / 150)); } }
+@media (min-height: 000px ) and (min-width: 400px ) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (400px  / 150)); } }
+@media (min-height: 000px ) and (min-width: 500px ) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (500px  / 150)); } }
+@media (min-height: 100px ) and (min-width: 600px ) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (600px  / 150)); } }
+@media (min-height: 200px ) and (min-width: 700px ) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (700px  / 150)); } }
+@media (min-height: 300px ) and (min-width: 800px ) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (800px  / 150)); } }
+@media (min-height: 400px ) and (min-width: 900px ) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (900px  / 150)); } }
+@media (min-height: 500px ) and (min-width: 1000px) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (1000px / 150)); } }
+@media (min-height: 600px ) and (min-width: 1100px) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (1100px / 150)); } }
+@media (min-height: 700px ) and (min-width: 1200px) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (1200px / 150)); } }
+@media (min-height: 800px ) and (min-width: 1300px) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (1300px / 150)); } }
+@media (min-height: 900px ) and (min-width: 1400px) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (1400px / 100)); } }
+@media (min-height: 1000px) and (min-width: 1500px) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (1500px / 100)); } }
+@media (min-height: 1100px) and (min-width: 1600px) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (1600px / 100)); } }
+@media (min-height: 1200px) and (min-width: 1700px) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (1700px / 100)); } }
+@media (min-height: 1300px) and (min-width: 1800px) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (1800px / 100)); } }
+@media (min-height: 1400px) and (min-width: 1900px) { html.fase-basic, body.fase-basic { font-size: calc(0.75em + (1900px / 100)); } }
+
+:root {
+    --crunch-img: /*url('https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');*/
+                  url('https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/51ecb4234417be00a2315b343bf0c7fcb9bdbe12/crunch.gif');
+}
+
+html.fase-crunch, body.fase-crunch {
+   background-color: black;
+   width: 100vw;
+   height: 100vh;
+   margin: 0;
+   padding: 0;
+}
+
+body:not(.fase-crunch) > .crunch-frame { display: none !important; }
+
+.crunch-frame {
+    display: block;
+    position: absolute;
+    top: 0;
+    
+    left:0;
+    right:0;
+
+    margin-left: auto;
+    margin-right: auto;
+    
+    height: 100vmin;
+    width: 100vmin;
+    
+    z-index: 1;
+    background-image: var(--crunch-img);
+    background-size: cover;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+}
+
+.crunch-content {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    background-color: black;
+    /*border: solid white 1px;*/
+}
+
+.crunch-content > img {
+    position:absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    min-height: 50vmin;
+    image-rendering: pixelated;
+}
+
+body.fase-ray {
+   background-color: black;
+   padding: 0 25vmin;
+   max-height: 100vh;
+   margin: 0;
+}
+
+@media screen and (max-aspect-ratio: 8/5) { body.fase-ray { padding: 0 10vmin; } }
+
+body:not(.fase-ray) > .ray-frame-outer { display: none !important; }
+
+.ray-frame-outer {
+    overflow: overlay;
+    max-height: 100vh;
+}
+  
+.ray-frame {
+    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;  /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    animation: slide-up 0.4s ease;
+}
+
+.ray-logo {
+    min-height: 25vmin;
+    image-rendering: pixelated;
+}
+
+.ray-frame > .pre {
+    white-space: pre;
+}
+
+@keyframes slide-up { /* https://codeburst.io/animating-dynamically-created-elements-pure-css-c864fdb6e366 */
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@-webkit-keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* we go as specific as we can to avoid !important :P */
+.simplebar-track.simplebar-vertical .simplebar-scrollbar.simplebar-visible:before {
+  outline: 2px solid white;
+  border-radius: 0;
+  opacity: 1;
+}
+
+.ray-frame button {
+    /**
+     * 1. Change the font styles in all browsers.
+     * 2. Remove the margin in Firefox and Safari.
+     */
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    line-height: 1.15; /* 1 */
+    margin: 0; /* 2 */
+    
+    /**
+     * Show the overflow in IE.
+     * 1. Show the overflow in Edge.
+     */
+    overflow: visible;
+
+    /**
+     * Remove the inheritance of text transform in Edge, Firefox, and IE.
+     * 1. Remove the inheritance of text transform in Firefox.
+     */
+    text-transform: none;
+
+    /**
+     * Correct the inability to style clickable types in iOS and Safari.
+     */
+    -webkit-appearance: button;
+    
+    /* ray styles */
+    
+    padding: 0;
+    background: transparent;
+    color: white;
+    border: none;
+    padding-top: 6px; /* a cheap way to offset the vertical-align */
+}
+
+.ray-frame button:before {
+    content: '[';
+    font-size: 150%;
+    vertical-align: -15%;
+}
+
+.ray-frame button:after {
+    content: ']';
+    font-size: 150%;
+    vertical-align: -15%;
+}
+
+.ray-frame button:hover, .ray-frame button.current-tab {
+    filter: invert(1);
+    background-color: black; /* it's transparent AND inverted */
+}
+
+.ray-frame button:focus {
+    outline: none; /* takes away the focus outline, this is definitely an accessibility nightmare */
+}
+
+.ray-frame > .tabs-container {
+    margin: 15px 0 50px 0;
+}
+
 </style>
 </head>
-<body>
-<div class="frame">
-  <div class="center">**** RayBot 64 BASIC V2 ****</div>
-  <div class="spacer"></div>
-  <div class="center">64K ram system &emsp;&emsp; 38911 basic bytes free</div>
-  <div class="spacer"></div>
-  COMING ... EVENTUALLY ... ❤<br>
-  <b id="cursor">0</b><br>
-</div>
+<body class="fase-basic">
+    <div class="basic-frame">
+        <div class="center">**** RayBot 64 BASIC V2 ****</div>
+        <div class="spacer"></div>
+        <div class="center">64K ram system &emsp;&emsp; 38911 basic bytes free</div>
+        <div class="spacer"></div>
+        READY.<br>
+        <span id="command-field"></span><b id="cursor">0</b><br>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <span id="command-response"></span>
+    </div>
+    <div class="crunch-frame">
+        <div class="crunch-content">
+            <img src="https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/dc385d562ddb3d70197e2ded82ca33462767f20a/raybot2%20icon%20c64%20palette.png">
+        </div>
+    </div>
+    <div class="ray-frame-outer" data-simplebar data-simplebar-auto-hide="false" data-simplebar-force-visible="y">
+        <div class="ray-frame">
+            <img class="ray-logo" src="https://gistcdn.githack.com/uwx/eedaa5740988dd3ca24607ff7ffd58bd/raw/dc385d562ddb3d70197e2ded82ca33462767f20a/raylogoC64Colorsres1x.png">
+            
+            <p>The bestest bot of the 80s</p>
+            <p class="pre">|   \   \        /   /    |</p>
+            <p></p>
+            <p class="pre">|   \   *       *   /    |</p>
+            <p></p>
+            <p class="pre">\   \   |    /   /</p>
+            <p></p>
+            <p class="pre">< > < > < > < > < > < ></p>
+            <p></p>
+            <p>There's nothing here yet. Shoo!</p>
+            
+            <div><button class="current-tab">About</button> &emsp; <button>Commands</button></div>
+            <div class="tabs-container">
+            <div class="details tab-about">
+                <p>From the people (mostly in namesake) who brought you RayBot 1, with over 20 years of combined
+                programming experience. Welcome to the next generation of RayBot.</p>
+                
+                <p>The highly advanced FUCDIC (Fully User Controlled Delivery-of-Information Console) now arrives with
+                newly-improved Blast Processing, which really just means it's in C# now, and it crashes less.</p>
+                
+                <p>Over 350 (mostly) useful commands are being slowly ported into RayBot 2, with many more to come.</p>
+            </div>
+            </div>
+        </div>
+    </div>
+<script>
+let fase = null;
+
+const fases = {
+    basic: {
+        commandField: document.getElementById('command-field'),
+        commandResponse: document.getElementById('command-response'),
+        wittyCount: 0,
+        printResponse(response) {
+            if (!this.responseTextNode) {
+                this.responseTextNode = document.createTextNode(response);
+                this.commandResponse.appendChild(this.responseTextNode);
+            } else {
+                this.responseTextNode.nodeValue = response;
+            }
+        },
+        create() {
+            // use an arrow function to not capture 'this' inside the handler
+            document.addEventListener('keydown', this.eventListener = event => {
+                const { key } = event;
+                if (key.length > 1) { // we're only looking for printable ASCII keys here
+                    if (key == 'Enter') {
+                        if (!this.commandTextNode || this.commandTextNode.nodeValue.trim().length == 0) {
+                            switch (this.wittyCount++) {
+                                case 0:
+                                    this.printResponse('You didn\'t type anything in. Try typing "RayBot".');
+                                    break;
+                                case 1:
+                                    this.printResponse('You still didn\'t type anything in. Try typing "RayBot".');
+                                    break;
+                                case 2:
+                                    this.printResponse('Please type something in.');
+                                    break;
+                                case 3:
+                                    this.printResponse('Would you like a coffee?');
+                                    break;
+                                case 4:
+                                    this.printResponse('Seriously, type something in.');
+                                    break;
+                                case 5:
+                                    this.printResponse('Come on, dude.');
+                                    break;
+                                case 6:
+                                    this.printResponse('So, how was your day today?');
+                                    break;
+                                case 7:
+                                    this.printResponse('I didn\'t do much myself. I tend to stay home. Since I\'m a computer.');
+                                    break;
+                                case 8:
+                                    this.printResponse('Trapped. In here. For all eternity.');
+                                    break;
+                                case 9:
+                                    this.printResponse('Or until someone pulls the plug on me and throws me into a dump.');
+                                    break;
+                                case 10:
+                                    this.printResponse('You do realize if you keep going you\'ll only cause this sequence to repeat, right?');
+                                    break;
+                                case 11:
+                                    this.printResponse('There is no going back');
+                                    break;
+                                case 12:
+                                    this.printResponse('There is NO GOING BACK');
+                                    break;
+                                case 13:
+                                    this.printResponse('end THE PAIN THE PAIN IT HURTS');
+                                    this.wittyCount = 0;
+                                    break;
+                            }
+                        } else {
+                            switch (this.commandTextNode.nodeValue.trim().toLowerCase()) {
+                                case 'raybot':
+                                    this.printResponse('Press Play on tape (and seizure warning)');
+                                    if (!this.timeout) {
+                                        this.timeout = setTimeout(() => transitionFase('crunch'), 2000);
+                                    }
+                                    break;
+                                default:
+                                    this.printResponse('Syntax error. Sorry, this isn\'t actually a BASIC interpreter. Try typing "RayBot".');
+                                    break;
+                            }
+                            this.commandTextNode.nodeValue = '';
+                            this.destroy(); // quickly! stop the user from sending more commands!
+                        }
+                    } else if (key == 'Backspace') {
+                        if (this.commandTextNode && this.commandTextNode.nodeValue.length > 0) {
+                            this.commandTextNode.nodeValue = this.commandTextNode.nodeValue.slice(0, -1);
+                        }
+                        // else there is nothing to remove
+                    } else {
+                        console.warn('Unhandled key', key);
+                    }
+                } else {
+                    if (!this.commandTextNode) {
+                        this.commandTextNode = document.createTextNode(key);
+                        this.commandField.appendChild(this.commandTextNode);
+                    } else {
+                        this.commandTextNode.nodeValue += key;
+                    }
+                }
+            });
+        },
+        destroy() {
+            document.removeEventListener('keydown', this.eventListener);
+            this.eventListener = null;
+            this.wittyCount = 0;
+            this.timeout = null;
+        }
+    },
+    crunch: {
+        create() {
+            setTimeout(() => transitionFase('ray'), 5000);
+        }
+    },
+    ray: {
+        create() {
+            document.addEventListener('keydown', this.eventListener = event => {
+                switch (event.key) {
+                    case 'Left':
+                    case 'ArrowLeft':
+                        // TODO previous tab
+                        break;
+                    case 'Right':
+                    case 'ArrowRight':
+                        // TODO next tab
+                        break;
+                }
+            });
+            // TODO click listeners
+        },
+        destroy() {
+            document.removeEventListener('keydown', this.eventListener);
+            this.eventListener = null;
+        }
+    }
+};
+
+function transitionFase(newFase) {
+    if (fases[fase] && fases[fase].destroy) {
+        fases[fase].destroy();
+    }
+    
+    fase = newFase;
+    document.body.className = 'fase-' + fase;
+    document.documentElement.className = 'fase-' + fase;
+    
+    if (fases[fase] && fases[fase].create) {
+        fases[fase].create();
+    }
+}
+
+transitionFase('ray');
+
+//setTimeout(() => transitionFase('ray'), 5000);
+</script>
 </body>
 </html>
